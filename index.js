@@ -1,12 +1,12 @@
 var express=require("express")
 var app=express();
-
+require("dotenv").config();
 var mysql2=require("mysql2")
 var j=mysql2.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"root",
-    database:""
+    host:process.env.host,
+    user:process.env.user,
+    password:process.env.password,
+    database:process.env.database
 })
 j.connect((err)=>{
     if(err){
@@ -23,7 +23,7 @@ app.get("/",(req,res)=>{
 
 })
 
-var port=100
+var port=process.env.port;
 app.listen(port,()=>{
 
 console.log(port)
